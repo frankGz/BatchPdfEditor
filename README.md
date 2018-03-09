@@ -1,1 +1,1 @@
-# BatchPDFeditor
+# BatchPdfEditor
