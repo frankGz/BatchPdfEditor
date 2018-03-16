@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class StudentNameScanner {
 	
 	public static LinkedList<String> scanNameList(String path){
+		
 		LinkedList<String> nameList = new LinkedList<String>();
 			try {
 				//read file
@@ -23,7 +24,7 @@ public class StudentNameScanner {
 		}catch (Exception e) {
             System.err.println("read errors :" + e);
         }
-		
+		//Boolean b = nameList.isEmpty();
 		return nameList;
 	}
 	/*

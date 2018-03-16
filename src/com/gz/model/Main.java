@@ -1,11 +1,12 @@
 package com.gz.model;
 
-import java.util.Scanner;
+import javax.swing.JFrame;
+import com.gz.model.UI.*;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		String names, src, dest, basemark;
+		/*String names, src, dest, basemark;
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter the path of your student name .txt file.");
@@ -15,11 +16,19 @@ public class Main {
 		System.out.println("Enter the path of your output folder.");
 		dest = in.nextLine();
 		System.out.println("Enter your watermark prefix.");
-		basemark = in.nextLine();
+		basemark = in.nextLine();*/
 		
-		BatchEditor b = new BatchEditor(src,dest,names,basemark);
+		UIFrame frame = new UIFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("PDF Manager");
+		frame.pack();
+		frame.setVisible(true);
 		
-		b.start();
-		in.close();
+		
+		
+		//BatchEditor b = new BatchEditor(src,dest,names,basemark);
+		
+		//b.start();
+		//in.close();
 	}
 }

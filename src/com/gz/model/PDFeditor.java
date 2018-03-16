@@ -18,16 +18,24 @@ import com.itextpdf.text.pdf.PdfStamper;
 public class PDFeditor {
 	
 	
-	public static void addWaterMark(String basemark, String name, String src, String dest) throws DocumentException, IOException {
+	public static String addWaterMark(String basemark, String name, String src, String dest) throws DocumentException, IOException {
+		
+		String statement = "";
 		
 		try {
 			// io
+			
+			
+			
 			PdfReader pdfReader = new PdfReader(src);
 			PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileOutputStream(dest));
 			
 			// set font
 			Font helvetica = new Font(FontFamily.HELVETICA, 12,Font.ITALIC, BaseColor.RED);
 	        BaseFont bf_helv = helvetica.getCalculatedBaseFont(true);
+			
+			// in order to display Chinese char, use windows font base
+	        //BaseFont bf_helv = BaseFont.createFont("C:/Windows/Fonts/simhei.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED); 
 	        
 	        Font helvetica_b = new Font(FontFamily.HELVETICA, 12);
 	        BaseFont bf_helv_b = helvetica_b.getCalculatedBaseFont(true);
@@ -70,10 +78,11 @@ public class PDFeditor {
 			pdfStamper.close();
 			
 		}catch(DocumentException e){
-			e.printStackTrace();
+			statement += e.toString();
 		}catch(IOException e){
-			e.printStackTrace();
+			statement += e.toString();
 		}
+		return statement;
 	}
 	
 	
