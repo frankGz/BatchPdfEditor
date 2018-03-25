@@ -62,6 +62,11 @@ public class PDFeditor {
 		          content.showTextAligned(Element.ALIGN_CENTER, name, mid_x ,crop.getTop() * 6 / 10, 45f);
 		          content.showTextAligned(Element.ALIGN_CENTER, basemark, mid_x , crop.getTop() * 4 / 10, 45f);
 		          
+		          //add my label
+		          content.setFontAndSize(bf_helv, 10);
+		          String mylabel = "BatchPdfEditor@Gz";
+		          content.showTextAligned(Element.ALIGN_RIGHT, mylabel, crop.getRight() - 30, 15, 0);
+		          
 		          //add name
 		          content.setColorFill(BaseColor.BLACK);
 		          content.setFontAndSize(bf_helv_b, 10);
@@ -72,6 +77,9 @@ public class PDFeditor {
 		          
 		          String line = "！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！";
 		          content.showTextAligned(Element.ALIGN_CENTER, line, mid_x, y - 15, 0);
+		          
+		          
+		          
 		          content.endText();
 		     }
 			

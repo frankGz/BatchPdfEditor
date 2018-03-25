@@ -34,9 +34,10 @@ public class UI
 		private JTextField merge_pdf_field; JButton merge_pdf = new JButton("选择");
 		private JTextField watermark;
 		
-		JButton confirm = new JButton("OK");
+		JButton confirm = new JButton("开始");
+		JButton mergingpdf = new JButton("合并");
 		
-		private JFileChooser jfc = new JFileChooser();
+		//JFileChooser jfc = new JFileChooser();
 		private String pdfpath = new String();
 		private String txtpath = new String();
 		private String storepath = new String();
@@ -56,11 +57,19 @@ public class UI
 			store_file.addActionListener(this);
 			confirm.addActionListener(this);
 			merge_pdf.addActionListener(this);
+			mergingpdf.addActionListener(this);
 			
 			JPanel banner = new JPanel();
 			JLabel str = new JLabel("欢迎使用PDF批量水印处理器 v1.0");
 			banner.add(str);
 			//banner.setAlignmentX(Component.LEFT_ALIGNMENT);
+			
+			
+			
+			JPanel UI = new JPanel();
+			JLabel UI_author = new JLabel("Author: Frank.Gz    UI: Kris Dai");
+			UI.add(UI_author);
+			
 			
 			JPanel pdfpanel = new JPanel(); 
 			//JPanel choosepdf = new JPanel(); choosepdf.add(choose_pdf);
@@ -103,12 +112,15 @@ public class UI
 			mergepanel.add(box5);
 			mergepanel.setBorder(new TitledBorder (new EtchedBorder(), "Merging all pdf files under the directory"));
 			
+			JPanel mergingpanel = new JPanel();
+			mergingpanel.add(mergingpdf);
 			
 			
 			// add all components to contentpanel
 			JPanel contentpanel = new JPanel();
 			contentpanel.setLayout(new BoxLayout(contentpanel, BoxLayout.Y_AXIS));
 			contentpanel.add(banner);
+			contentpanel.add(UI);
 			contentpanel.add(Box.createRigidArea(new Dimension(0,10)));
 			contentpanel.add(pdfpanel);
 			contentpanel.add(Box.createRigidArea(new Dimension(0,10)));
@@ -121,6 +133,9 @@ public class UI
 			contentpanel.add(confirmpanel);
 			contentpanel.add(Box.createRigidArea(new Dimension(0,10)));
 			contentpanel.add(mergepanel);
+			contentpanel.add(Box.createRigidArea(new Dimension(0,10)));
+			contentpanel.add(mergingpanel);
+			
 			
 			
 			this.setContentPane(contentpanel);
@@ -129,6 +144,7 @@ public class UI
 		public void actionPerformed (ActionEvent ae)
 		{
 			Object source = ae.getSource();
+			JFileChooser jfc = new JFileChooser();
 			File selectedfile;
 			
 			// reset filter
@@ -192,16 +208,60 @@ public class UI
 							}
 				}
 			}else
+				if (source == confirm)
+				{
+					pdfpath = choose_pdf_field.getText();
+					txtpath = choose_txt_field.getText();
+					storepath = store_file_field.getText();
+				
+					/*int pdfpath_length = pdfpath.length();
+					int txtpath_length = txtpath.length();*/
+				
+					if (!pdfpath.endsWith("pdf") || !txtpath.endsWith("txt"))
+					{
+						JOptionPane.showMessageDialog(choose_pdf, "Please put pdf file in pdf field, txt file in txt field");
+					}else
+						if (storepath.isEmpty())
+						{
+							JOptionPane.showMessageDialog(confirm, "The store location can not be emoty");
+						}else
+						{
+							BatchEditor b = new BatchEditor(pdfpath, storepath, txtpath, watermark.getText());
+							System.out.println(pdfpath);
+							System.out.println(storepath);
+							System.out.println(txtpath);
+							System.out.println(watermark.getText());
+							String msg = b.start();
+							
+							if(msg.equals("")) {
+						
+								File f = new File(choose_pdf_field.getText());
+								String fileName = f.getName().replaceFirst("[.][^.]+$", "");
+							
+								merge_pdf_field.setText(store_file_field.getText() + "\\" + fileName);
+								mergepath = merge_pdf_field.getText();
+								JOptionPane.showMessageDialog(confirm, "Complete");
+							}else {
+							
+								JOptionPane.showMessageDialog(confirm, msg);
+							}
+						}									
+			}else
 			{
-				BatchEditor b = new BatchEditor(choose_pdf_field.getText(),store_file_field.getText(),choose_txt_field.getText(),watermark.getText());
-				b.start();
-				
-				File f = new File(choose_pdf_field.getText());
-				String fileName = f.getName().replaceFirst("[.][^.]+$", "");
-				
-				//mergepath = storepath;
-				merge_pdf_field.setText(store_file_field.getText() + "\\" + fileName);
-				
+				mergepath = merge_pdf_field.getText();
+				if (mergepath.isEmpty())
+				{
+					JOptionPane.showMessageDialog(mergingpdf, "The target folder can not be empty");
+				}else
+				{
+					String msg_merge = MergePDF.mergePDF(mergepath);
+					if(msg_merge.equals("")) {
+						JOptionPane.showMessageDialog(confirm, "Merge completed");
+					}else
+					{
+						JOptionPane.showMessageDialog(confirm, msg_merge);
+					}
+				}
 			}
 		}
 		

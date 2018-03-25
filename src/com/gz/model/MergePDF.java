@@ -109,8 +109,10 @@ public class MergePDF {
 	}
 	
 	public static void main(String[] args) {
-		mergePDF("C:\\Users\\Frank.Gz\\Desktop\\Data\\test\\test");
+		mergePDF("C:\\Users\\Frank.Gz\\Desktop\\test");
 	}
+	
+	
 }
 
 
