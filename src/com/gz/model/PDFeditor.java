@@ -11,6 +11,7 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfGState;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
@@ -50,9 +51,16 @@ public class PDFeditor {
 	        float x = crop.getRight() * 5 / 100 ;
 	        float y = crop.getTop() * 95 / 100;
 	        
+	        PdfContentByte content;
+	        //TRANSPARENTY
+	        PdfGState gs1 = new PdfGState();
+	        gs1.setFillOpacity(0.5f);
+	        
 			for(int i=1; i<= pdfReader.getNumberOfPages(); i++){
 
-		          PdfContentByte content = pdfStamper.getUnderContent(i);
+		          content = pdfStamper.getOverContent(i);
+		          content.saveState();
+		          content.setGState(gs1);
 		          
 		          content.beginText();
 		          
@@ -79,7 +87,7 @@ public class PDFeditor {
 		          content.showTextAligned(Element.ALIGN_CENTER, line, mid_x, y - 15, 0);
 		          
 		          
-		          
+		          content.restoreState();
 		          content.endText();
 		     }
 			

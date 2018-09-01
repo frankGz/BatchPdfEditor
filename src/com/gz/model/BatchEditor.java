@@ -39,7 +39,7 @@ public class BatchEditor {
 			while(it.hasNext()) {
 				name = it.next();
 				current = dest + "\\" +  fileName + "\\" + name + ".pdf";
-				statement += PDFeditor.addWaterMark(basemark, name, src, dest + "\\" +  fileName + "\\" + name + ".pdf");
+				statement += PDFeditor.addWaterMark(basemark, name, src, dest +  fileName + "\\" + name + ".pdf");
 				System.out.println("working on..." + current);
 			}
 		}catch(DocumentException e){

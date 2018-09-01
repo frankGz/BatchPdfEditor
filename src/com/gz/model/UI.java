@@ -238,7 +238,7 @@ public class UI
 								File f = new File(choose_pdf_field.getText());
 								String fileName = f.getName().replaceFirst("[.][^.]+$", "");
 							
-								merge_pdf_field.setText(store_file_field.getText() + "\\" + fileName);
+								merge_pdf_field.setText(store_file_field.getText() + fileName);
 								mergepath = merge_pdf_field.getText();
 								JOptionPane.showMessageDialog(confirm, "Complete");
 							}else {
