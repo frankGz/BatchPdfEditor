@@ -15,6 +15,6 @@
 	<classpathentry kind="lib" path="H:/Develop/eclipse/eclipse/plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar" sourcepath="H:/Develop/eclipse/eclipse/plugins/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar"/>
 	<classpathentry kind="lib" path="H:/Develop/eclipse/eclipse/plugins/com.ibm.icu_58.2.0.v20170418-1837.jar" sourcepath="H:/Develop/eclipse/eclipse/plugins/com.ibm.icu_58.2.0.v20170418-1837.jar"/>
 	<classpathentry kind="lib" path="H:/Develop/eclipse/eclipse/plugins/org.eclipse.ui.forms_3.7.101.v20170815-1446.jar" sourcepath="H:/Develop/eclipse/eclipse/plugins/org.eclipse.ui.forms_3.7.101.v20170815-1446.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Frank.Gz/Desktop/Data/文件/新建文件夹/itextpdf-5.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Frank.Gz/Desktop/Data/javaspace/BatchPDFeditor/res/itextpdf-5.5.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

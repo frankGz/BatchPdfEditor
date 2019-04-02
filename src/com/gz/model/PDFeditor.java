@@ -94,8 +94,10 @@ public class PDFeditor {
 			pdfStamper.close();
 			
 		}catch(DocumentException e){
+			e.printStackTrace();
 			statement += e.toString();
 		}catch(IOException e){
+			e.printStackTrace();
 			statement += e.toString();
 		}
 		return statement;
